@@ -16,7 +16,7 @@ public class ApiVendasApplication {
 	@Autowired
 	private MinhaConfiguration minhaConfiguration;
 	
-	@Value("${spring.application.name}")
+	@Value("${application.name}")
 	private String applicationName;
 	
 	@GetMapping("/hello")
