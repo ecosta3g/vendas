@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.ecosta3g.config.MinhaConfiguration;
+
 @SpringBootApplication
 @RestController
 public class ApiVendasApplication {
