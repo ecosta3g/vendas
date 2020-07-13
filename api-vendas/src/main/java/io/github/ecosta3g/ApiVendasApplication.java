@@ -2,11 +2,17 @@ package io.github.ecosta3g;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import io.github.ecosta3g.model.entity.Cliente;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
+@RestController
 public class ApiVendasApplication {
+	
+	@GetMapping("/teste")
+	public String teste() {
+		return "teste";
+	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ApiVendasApplication.class, args);
