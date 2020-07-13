@@ -3,6 +3,8 @@ package io.github.ecosta3g;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import io.github.ecosta3g.model.entity.Cliente;
+
 @SpringBootApplication
 public class ApiVendasApplication {
 	
