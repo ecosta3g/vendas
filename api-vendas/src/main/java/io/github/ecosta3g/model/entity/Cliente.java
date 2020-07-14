@@ -32,12 +32,12 @@ public class Cliente {
 	private Integer id;
 	
 	@Column(length = 150, nullable = false)
-	@NotEmpty
+	@NotEmpty(message = "{campo.nome.obrigatorio}")
 	private String nome;
 	
 	@Column(length = 11, nullable = false)
-	@NotNull
-	@CPF
+	@NotNull(message = "{campo.cpf.obrigatorio}")
+	@CPF(message = "{campo.cpf.invalido}")
 	private String cpf;
 	
 	@Column(name = "data_cadastro", updatable = false)
