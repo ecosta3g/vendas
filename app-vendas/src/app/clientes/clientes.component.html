@@ -1,1 +1,7 @@
-<p>clientes works!</p>
+<p>Olá {{nome}}</p>
+
+<ul>
+  <li *ngFor="let cliente of clientes">
+    {{cliente.nome}} | {{cliente.idade}}
+  </li>
+</ul>
