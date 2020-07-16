@@ -8,13 +8,13 @@ import lombok.Getter;
 public class ApiErros {
 	
 	@Getter
-	public List<String> erros;
+	public List<String> errors;
 	
 	public ApiErros( List<String> erros) {
-		this.erros = erros;
+		this.errors = erros;
 	}
 
 	public ApiErros(String message) {
-		this.erros = Arrays.asList(message);
+		this.errors = Arrays.asList(message);
 	}
 }
