@@ -1,6 +1,6 @@
 <h1 class="mt-4">Clientes</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Cadastro</li>
+    <li class="breadcrumb-item active">{{ cliente.id ? 'Edição' : 'Cadastro'}}</li>
 </ol>
 <div id="container">
   <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="cliente.id">
       <div class="col-md-6">
         <div class="form-group">
           <label>ID</label>
@@ -47,10 +47,13 @@
 
     <div class="row">
       <div class="col-md-3">
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
           <li class="fa fa-save"></li> Salvar
         </button>
-        <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+        <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
+          <li class="fa fa-sync-alt"></li> Atualizar
+        </button>
+        <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()" *ngIf="cliente.id">
           <li class="fa fa-arrow-alt-circle-left"></li> Voltar
         </button>
       </div>

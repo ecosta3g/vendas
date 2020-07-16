@@ -1,7 +1,8 @@
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClientesService } from './../../clientes.service';
 import { Cliente } from './../cliente';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-clientes-form',
@@ -23,32 +24,49 @@ export class ClientesFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const params = this.activedRouter.params;
-    if (params && params.value && params.value.id){
-      this.id = params.value.id;
-      this
+    const params: Observable<Params> = this.activedRouter.params;
+    params.subscribe( urlParams => {
+      this.id = urlParams.id;
+      if (this.id){
+        this
         .clienteService
         .buscarPorId(this.id)
         .subscribe(
           response => this.cliente = response,
           errorResponse => this.cliente = new Cliente()
         );
-    }
+      }
+    });
   }
 
   onSubmit(): void {
-    console.log(this.cliente);
-    this
-      .clienteService
-      .salvar(this.cliente)
-      .subscribe(response => {
-        this.success = true;
-        this.errors = null;
-        this.cliente = response;
-      }, errorResponse => {
-        this.errors = errorResponse.error.errors;
-        this.success = false;
-      });
+    if (this.cliente.id){
+      this
+        .clienteService
+        .atualizar(this.cliente)
+        .subscribe(response => {
+          this.success = true;
+          this.errors = null;
+          this.router.navigate(['/clientes-lista/alterado']);
+        }, errorResponse => {
+          this.errors = errorResponse.error.errors;
+          this.success = false;
+        });
+    } else {
+      this
+        .clienteService
+        .salvar(this.cliente)
+        .subscribe(response => {
+          this.success = true;
+          this.errors = null;
+          this.cliente = response;
+          this.router.navigate(['/clientes-lista/cadastrado']);
+        }, errorResponse => {
+          this.errors = errorResponse.error.errors;
+          this.success = false;
+        });
+    }
+
   }
 
   voltarParaListagem(): void{
