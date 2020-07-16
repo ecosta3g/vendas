@@ -1,5 +1,7 @@
 package io.github.ecosta3g.rest;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,11 @@ public class ClienteController {
 	@GetMapping("/{id}")
 	public Cliente buscarPorId(@PathVariable Integer id) {
 		return clienteRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado."));
+	}
+	
+	@GetMapping()
+	public List<Cliente> buscarTodos() {
+		return clienteRepository.findAll();
 	}
 	
 	@DeleteMapping("/{id}")

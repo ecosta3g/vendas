@@ -15,23 +15,8 @@ export class ClientesService {
     return this.http.post<Cliente>('http://localhost:8080/api/clientes/', cliente);
   }
 
-  atualizar(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>('http://localhost:8080/api/clientes/', Cliente);
+  buscarTodos(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>('http://localhost:8080/api/clientes/');
   }
 
-  buscar(): Observable<Cliente> {
-    return this.http.post<Cliente>('http://localhost:8080/api/clientes/', Cliente);
-  }
-
-  remover(cliente: Cliente): Observable<Cliente> {
-    return this.http.post<Cliente>('http://localhost:8080/api/clientes/', Cliente);
-  }
-
-  getCliente(): Cliente{
-    const cliente: Cliente = new Cliente();
-    cliente.nome = 'Fulano de Tal';
-    cliente.cpf = '11111111111';
-
-    return cliente;
-  }
 }
